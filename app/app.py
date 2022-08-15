@@ -40,9 +40,10 @@ def ping_pong():
 def home():
     return render_template("home.html")
 
-@app.route("/<string:page_name>", methods=["GET"])
-def static_page(page_name):
-    return render_template(f"{page_name}.html")
+# send
+@app.route("/send", methods=["GET"])
+def send():
+    return render_template("send.html")
 
 if __name__ == "__main__":
     
