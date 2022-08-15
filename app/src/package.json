@@ -6,8 +6,8 @@
   "scripts": {
     "build-css": "npx tailwindcss -i ./css/base.css -o ./css/main.css",
     "build-css-forever": "npx tailwindcss -i ./css/base.css -o ./css/main.css --watch",
-    "start:dev": "ENV=dev && cd .. && npm run build-css && python app.py",
-    "start:prod": "ENV=prod && cd .. && npm run build-css && python app.py",
+    "start:dev": "ENV=dev && npm run build-css && cd .. && python app.py",
+    "start:prod": "ENV=prod && npm run build-css && cd .. && python app.py",
     "yeet-it": "npm run build-css && git add -A && git commit -m \"yeet it 😈\" && git push && echo \"\nyeeeeeeeeeeeeeeeeeeted it 😈\n\""
   },
   "keywords": [],
