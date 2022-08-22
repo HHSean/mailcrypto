@@ -3,7 +3,6 @@
 secrets.json
 .env
 *.zip
-contracts/
 
 
 # random stuff
