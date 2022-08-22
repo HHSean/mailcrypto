@@ -31,6 +31,9 @@ Hi, someone is trying to send you crypto!
     Key: {key}
         
 If you want to claim it, you can do so directly at https://mailcrypto.xyz/claim/{key}
+(DO **NOT** SEND THIS LINK TO ANYONE ELSE!)
+
+
 We're happy to provide this service free of charge!
 
 If you want to no longer receive emails from us, you can do so at https://mailcrypto.xyz/unsubscribe/{key}

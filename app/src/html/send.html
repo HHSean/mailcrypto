@@ -52,15 +52,15 @@
             Send
           </a>
 
-          <a href="#how" class="px-1 py-6 text-sm leading-snug hover:text-orange-600
+          <a href="/#how" class="px-1 py-6 text-sm leading-snug hover:text-orange-600
               md:px-3 lg:px-6 lg:hover:bg-macosLight-300">
             How
           </a>
-          <a href="#faq" class="border-black px-1 py-6 text-sm leading-snug
+          <a href="/claim" class="border-black px-1 py-6 text-sm leading-snug
               hover:text-orange-600 focus:bg-macosLight-100 md:px-3 lg:border-l
-              lg:px-6 lg:hover:bg-macosLight-300">FAQ
+              lg:px-6 lg:hover:bg-macosLight-300">Claim
           </a>
-          <a href="#links" class="border-black px-1 py-6 text-sm leading-snug
+          <a href="/#links" class="border-black px-1 py-6 text-sm leading-snug
               hover:text-orange-600 focus:bg-macosLight-100 md:px-3 lg:border-l
               lg:px-6 lg:hover:bg-macosLight-300">Links
           </a>
@@ -128,7 +128,8 @@
                           rounded-md" placeholder="0.00" aria-describedby="price-currency">
                   <div class="absolute inset-y-0 right-0 pr-3 flex
                           items-center pointer-events-none">
-                    <span class="text-gray-500 sm:text-sm" id="price-currency"> USD </span>
+                    <span class="text-gray-500 sm:text-sm" id="price-currency"> MATIC </span>
+                    <!-- <span class="text-gray-500 sm:text-sm" id="price-currency"> USD </span> -->
                   </div>
                 </div>
               </div>
@@ -177,7 +178,7 @@
 
   <footer class="border-t border-black" aria-labelledby="footer-heading">
     <h2 id="footer-heading" class="sr-only">Footer</h2>
-    <div class="mx-auto max-w-7xl border-x border-black bg-macosLight-300
+    <div class="mx-auto max-w-7xl border-x border-b border-black bg-macosLight-300
           px-4
           pt-12 pb-4 sm:px-6 lg:px-12 lg:py-24">
       <div class="flex flex-col lg:flex-row space-y-10 w-100
@@ -215,6 +216,11 @@
     </div>
   </footer>
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+  <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
+        type="application/javascript" defer></script>
+  <script src="/src/js/crypto.js" defer></script>
+  <script src="/src/js/metamask.js" defer></script>
+
 </body>
 
 </html>

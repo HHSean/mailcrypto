@@ -62,19 +62,19 @@
             </a>
 
             <a
-              href="#how"
+              href="/#how"
               class="px-1 py-6 text-sm leading-snug hover:text-orange-600
               md:px-3 lg:px-6 lg:hover:bg-macosLight-300">
               How
             </a>
             <a
-              href="#faq"
+              href="/claim"
               class="border-black px-1 py-6 text-sm leading-snug
               hover:text-orange-600 focus:bg-macosLight-100 md:px-3 lg:border-l
-              lg:px-6 lg:hover:bg-macosLight-300">FAQ
+              lg:px-6 lg:hover:bg-macosLight-300">Claim
             </a>
             <a
-              href="#links"
+              href="/#links"
               class="border-black px-1 py-6 text-sm leading-snug
               hover:text-orange-600 focus:bg-macosLight-100 md:px-3 lg:border-l
               lg:px-6 lg:hover:bg-macosLight-300">Links
@@ -134,26 +134,34 @@
                 <h2
                   class="title-font mb-8 text-4xl font-black tracking-tighter
                   text-black md:text-5xl">
-                  Set a password
+                  Make a deposit.
                 </h2>
                 <p class="mt-4 text-lg text-gray-500">
-                  Select the amount you want to send, set a key phrase, and
+                  Select the amount you want to send, set a message, and
                   enter the recipient's email. Your funds will be stored
-                  securely and non-custodially in the smart contract. We'll send
+                  securely and in the smart contract. We'll send
                   a notification to the recipient telling him his funds are
                   ready. If he never claims them, you can always get them back.
                 </p>
               </div>
             </div>
-            <div class="lg:mt-0">
+            <!-- <div class="mt-2">
+              <img
+                  class="max-w-[400px]"
+                  src="./src/media/squareOne.png"
+                  alt="Inbox user interface"
+                  />
+            </div> -->
+            <div class="lg:mt-0 max-w-[400px]">
               <div class="lg:relative lg:ml-auto lg:h-full lg:px-0">
                 <img
                   class="w-full object-cover lg:absolute lg:h-full"
                   src="./src/media/squareOne.png"
                   alt="Inbox user interface"
                   />
-              </div>
+              </div>              
             </div>
+          </div>
           </div>
         </div>
       </div>
@@ -173,7 +181,7 @@
                 <h2
                   class="title-font mb-8 text-4xl font-black tracking-tighter
                   text-black md:text-5xl">
-                  Recipient gets email
+                  Recipient gets email.
                 </h2>
                 <p class="mt-4 text-lg text-gray-500">
                   Your beneficiary gets notified of incoming funds. They can
@@ -183,10 +191,22 @@
                 </p>
               </div>
             </div>
-            <div class="lg:order-first lg:mt-0">
-              <div class="lg:relative lg:ml-auto lg:h-full lg:px-0">
+            <!-- <div class="mt-2">
+              <img
+                  class="max-w-[400px]"
+                  src="./src/media/squareTwo.png"
+                  alt="Inbox user interface"
+                  />
+            </div> -->
+            <div class="lg:order-first lg:mt-0 ">
+              <!-- <img
+                  class="max-w-[400px]"
+                  src="./src/media/squareTwo.png"
+                  alt="Inbox user interface"
+                  /> -->
+              <div class="lg:relative lg:ml-auto lg:h-full lg:px-0 min-h-[372px]">
                 <img
-                  class="w-full object-cover lg:absolute lg:h-full"
+                  class="w-full object-cover lg:absolute lg:h-full min-h-[372px]"
                   src="./src/media/squareTwo.png"
                   alt="Inbox user interface"
                   />
@@ -307,7 +327,7 @@
       </div>
     </section>
 
-    <section class="divide-y border-b border-black" id="faq">
+    <!-- <section class="divide-y border-b border-black" id="Claim">
       <div
         class="container relative mx-auto border-black bg-macosLight-300 px-5
         lg:border-r lg:border-l lg:px-16">
@@ -379,7 +399,7 @@
             </div>
           </div>
         </div>
-      </section>
+      </section> -->
 
 
       <section class="divide-y border-b border-black" id="links">
@@ -398,18 +418,12 @@
                   Official Links.
                 </h2>
                 <div class="mx-auto w-full text-center">
-                  <!-- <a href="https://opensea.io/assets/{{ contractAddress}}" target="_blank" -->
-                  <a href="https://opensea.io/collection/polyfaucet"
-                    target="_blank" class="mx-1 text-center underline">OpenSea</a>
-                  <a href="https://rarible.com/collection/polygon/{{
-                    contractAddress }}" target="_blank" class="mx-1 text-center
-                    underline">Rarible</a>
                   <!-- <a href="https://looksrare.org/collections/{{ contractAddress}}" target="_blank"
                   class="mx-1 text-center underline">LooksRare</a> -->
-                  <a href="https://polygonscan.com/address/{{ contractAddress}}"
+                  <a href="https://mumbai.polygonscan.com/address/{{ contractAddress}}" target="_blank"
                     target="_blank"
                     class="mx-1 text-center underline">Polygonscan</a>
-                  <a href="https://github.com/ProphetFund/polyfaucet"
+                  <a href=""
                     target="_blank" class="mx-1 text-center underline">Github</a>
                 </div>
               </div>
@@ -482,7 +496,7 @@
       <footer class="border-t border-black" aria-labelledby="footer-heading">
         <h2 id="footer-heading" class="sr-only">Footer</h2>
         <div
-          class="mx-auto max-w-7xl border-x border-black bg-macosLight-300 px-4
+          class="mx-auto max-w-7xl border-x border-b border-black bg-macosLight-300 px-4
           pt-12 pb-4 sm:px-6 lg:px-12 lg:py-24">
           <div class="flex flex-col lg:flex-row space-y-10 w-100 justify-center
             text-center lg:justify-start lg:text-left">

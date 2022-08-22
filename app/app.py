@@ -16,7 +16,7 @@ import db
 import web3
 
 ################################################################################
-CONTRACT = "0x616d197a29e50ebd08a4287b26e47041286f171d"
+CONTRACT = "0xEb5AE49BB91709Bd8Be77924854DF093c2C5Ce8f"
 ################################################################################
 
 
@@ -42,7 +42,7 @@ def ping_pong():
 # home
 @app.route("/", methods=["GET"])
 def home():
-    return render_template("home.html")
+    return render_template("home.html", contractAddress=CONTRACT)
 
 # send
 @app.route("/send", methods=["GET", "POST"])
@@ -108,6 +108,11 @@ def claim(key):
             
 
         recipient = deposit["recipient"]
+
+
+@app.route("/claim", methods=["GET"])
+def claim_base():
+    return render_template("claim_base.html")
 
 
 

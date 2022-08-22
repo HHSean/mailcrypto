@@ -1,0 +1,26 @@
+(psycopg2.errors.InvalidTextRepresentation) invalid input syntax for type integer: "21414241.1"
+LINE 1: ...gro.com', 'ec8d76d5-8bdb-45e7-9e4d-82f7299c3c5a', '21414241....
+                                                             ^
+
+[SQL: INSERT INTO deposits (sender, recipient, key, amount, message, created_at, updated_at, accepted) VALUES (%(sender)s, %(recipient)s, %(key)s, %(amount)s, %(message)s, %(created_at)s, %(updated_at)s, %(accepted)s) RETURNING deposits.id]
+[parameters: {'sender': 'testsaffssaf@hugomontenegro.com', 'recipient': 'testsaffssaf@hugomontenegro.com', 'key': 'ec8d76d5-8bdb-45e7-9e4d-82f7299c3c5a', 'amount': '21414241.1', 'message': 'test', 'created_at': datetime.datetime(2022, 8, 22, 20, 37, 12, 885956), 'updated_at': datetime.datetime(2022, 8, 22, 20, 37, 12, 885971), 'accepted': False}]
+(Background on this error at: https://sqlalche.me/e/14/9h9h)
+ImmutableMultiDict([('email', 'testsaffssaf@hugomontenegro.com'), ('amount', '21414241.1'), ('message', 'test')])
+testsaffssaf@hugomontenegro.com
+21414241.1
+(psycopg2.OperationalError) server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+[SQL: INSERT INTO deposits (sender, recipient, key, amount, message, created_at, updated_at, accepted) VALUES (%(sender)s, %(recipient)s, %(key)s, %(amount)s, %(message)s, %(created_at)s, %(updated_at)s, %(accepted)s) RETURNING deposits.id]
+[parameters: {'sender': 'test@hugomontenegro.com', 'recipient': 'test@hugomontenegro.com', 'key': '4fd7a67a-5a27-4f17-bc2f-c596de6eb1b0', 'amount': '100', 'message': "Hi my dear friend thomas. I've been talking to you about crypto, it's time to sign up. Here's 100$", 'created_at': datetime.datetime(2022, 8, 22, 20, 55, 35, 298120), 'updated_at': datetime.datetime(2022, 8, 22, 20, 55, 35, 299176), 'accepted': False}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+ImmutableMultiDict([('email', 'test@hugomontenegro.com'), ('amount', '100'), ('message', "Hi my dear friend thomas. I've been talking to you about crypto, it's time to sign up. Here's 100$")])
+test@hugomontenegro.com
+100
