@@ -14,4 +14,4 @@ web3
 flask
 flask_cors
 gunicorn
-dot_env
+python-dotenv
