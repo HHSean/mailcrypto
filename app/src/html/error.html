@@ -80,94 +80,10 @@
             <div>
               <div class="mt-6 lg:text-center">
                 <h2 class="title-font mb-3 text-5xl font-black tracking-tighter
-                    text-black md:text-4xl"> Send crypto to an @email
+                    text-black md:text-2xl"> {{ message }}
                 </h2>
-                <p class="mt-4 text-lg text-gray-500">
-                  Currently on:
-                  <a href="#" class="font-medium text-indigo-600
-                      hover:text-indigo-500"> Polygon Mainnet</a>
-                </p>
               </div>
             </div>
-
-
-            <!-- ==== POST FORM ==== -->
-            <form class="mt-8 space-y-6" action="/send" method="POST">
-
-              <div>
-                <label for="email" class="block text-sm font-black                  
-                    text-gray-700">Email</label>
-                <div class="mt-1 relative rounded-md shadow-sm">
-                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center
-                      pointer-events-none">
-                    <!-- Heroicon name: solid/mail -->
-                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                      fill="currentColor" aria-hidden="true">
-                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016
-                          4H4a2 2 0 00-1.997 1.884z" />
-                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0
-                            002-2V8.118z" />
-                    </svg>
-                  </div>
-                  <input id="email" name="email" type="email" autocomplete="email" required class="focus:ring-indigo-500 focus:border-indigo-500
-                          block w-full pl-10 sm:text-sm border-gray-300
-                          rounded-md" placeholder="alex@example.com">
-                </div>
-              </div>
-
-              <div>
-                <label for="amount" class="block text-sm font-black 
-                        text-gray-700">Amount</label>
-                <div class="mt-1 relative rounded-md shadow-sm">
-                  <div class="absolute inset-y-0 left-0 pl-3 flex
-                          items-center pointer-events-none">
-                    <span class="text-gray-500 sm:text-sm"> $ </span>
-                  </div>
-                  <input name="amount" id="amount" required type="text" autocomplete="amount" class="focus:ring-indigo-500 focus:border-indigo-500
-                          block w-full pl-7 pr-12 sm:text-sm border-gray-300
-                          rounded-md" placeholder="0.00" aria-describedby="price-currency">
-                  <div class="absolute inset-y-0 right-0 pr-3 flex
-                          items-center pointer-events-none">
-                    <span class="text-gray-500 sm:text-sm" id="price-currency"> USD </span>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <label for="comment" class="block text-sm font-black text-gray-700">Message</label>
-                <div class="mt-1">
-                  <textarea rows="2" name="message" id="message" maxlength="100"  placeholder="&quot;Hello John here's your payment for last weeks repairs...&quot;"
-                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
-                </div>
-              </div>
-
-
-              <button type="submit" class="focus:ring-inset-2
-                      focus:ring-inset-macosAccent-600 block
-                      w-full sm:w-2/3 md:w-3/5 lg:w-4/5 border
-                      border-transparent
-                      bg-black
-                      px-5
-                      py-3 text-base font-medium text-white hover:bg-gray-600
-                      focus:outline-none focus:ring-2 focus:ring-white 
-                      mt-8
-                      lg:mt-14
-                      mx-auto">
-                Send Crypto
-              </button>
-              <div class="text-sm text-center underline mt-4">
-                <a href="https://polygonscan.com/address/0x616d197a29e50ebd08a4287b26e47041286f171d"
-                  class="text-gray-500 hover:text-gray-600">
-                  Polygonscan
-                </a>
-                <!-- <a class="text-sm text-center w-100 
-                    mt-8" href="/">
-                  Cancel
-                </a> -->
-
-              </div>
-            </form>
-            <!-- ==== POST FORM END ==== -->
 
           </div>
         </div>

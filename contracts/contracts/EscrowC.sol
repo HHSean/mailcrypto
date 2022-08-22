@@ -28,7 +28,7 @@ contract EscrowC is Ownable {
         string recipient; // email
         uint256 amount; // amount to send
     }
-    transaction[] transactions; // array of transactions
+    transaction[] public transactions; // array of transactions
     mapping(string => address) emails; // mapping of email to address
 
     // events

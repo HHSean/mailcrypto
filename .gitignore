@@ -3,6 +3,7 @@
 secrets.json
 .env
 *.zip
+*.csv
 
 
 # random stuff

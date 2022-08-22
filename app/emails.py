@@ -4,9 +4,8 @@
 
 import smtplib, ssl
 from email.message import EmailMessage
-
-from dotenv import load_dotenv
 import os
+from dotenv import load_dotenv
 load_dotenv("../.env")
 
 MAIL_USERNAME = os.getenv("MAIL_USERNAME")
@@ -46,6 +45,22 @@ If you want to no longer receive emails from us, you can do so at https://mailcr
         server.send_message(msg)
         return
 
+
+def send_admin_email(**kwargs):
+    # sends admin email to mailcrypto@hugomontenegro.com
+    context = ssl.create_default_context()
+    with smtplib.SMTP_SSL(MAIL_SERVER, MAIL_PORT, context=context) as server:
+        server.login(MAIL_USERNAME, MAIL_PASSWORD)
+        content = f"New event in mailcrypto.xyz. \nArguments:"
+        for k, v in kwargs.items():
+            content += f"\n{k}: {v}"
+        msg = EmailMessage()
+        msg["Subject"] = "New event in mailcrypto.xyz"
+        msg.set_content(content)
+        msg["From"] = "admin@mailcrypto.xyz"
+        msg["To"] = "mailcrypto@hugomontenegro.com"
+        server.send_message(msg)
+        return
 
 if __name__ == "__main__":
     # send test email to test@hugomontenegro.com
