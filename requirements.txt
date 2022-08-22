@@ -14,7 +14,7 @@ web3
 flask
 flask_cors
 gunicorn
-python-dotenv
+python-dotenv==0.16.0
 
 # db
 sqlalchemy
