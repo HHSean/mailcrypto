@@ -56,6 +56,8 @@ def send():
             message = request.form["message"]
             # create uuid
             key = str(uuid.uuid4())
+            # make deposit in db
+            db.insert_deposit(email, email, key, amount, message)
             
             # send email
             emails.send_email(email, amount=amount, key=key, message=message)
