@@ -44,7 +44,13 @@ deposits = Table(
     Column("accepted", Boolean),
 )
 
-engine = create_engine(DB_URI, echo=False)
+engine = create_engine(DB_URI, echo=False, connect_args={
+    "keepalives": 1,
+    "keepalives_idle": 30,
+    "keepalives_interval": 10,
+    "keepalives_count": 5,
+}, pool_size=20, pool_recycle=3600)
+
 meta.create_all(engine)
 Session = sessionmaker(bind=engine)
 
@@ -78,12 +84,15 @@ def get_deposit(key):
 
 
 def update_deposit(key, accepted):
-    session = Session()
-    deposit = session.query(deposits).filter(deposits.c.key == key).first()
-    deposit.accepted = accepted
-    deposit.updated_at = datetime.datetime.now()
-    session.commit()
-    return deposit
+    # update accepted and updated_at
+    engine.execute(deposits.update().where(deposits.c.key == key).values(accepted=accepted, updated_at=datetime.datetime.utcnow()))
+
+    # session = Session()
+    # deposit = session.query(deposits).filter(deposits.c.key == key).first()
+    # deposit.accepted = accepted
+    # deposit.updated_at = datetime.datetime.now()
+    # session.commit()
+    # return deposit
 
 def check_key(key):
     # checks if a key is in the database
@@ -128,9 +137,7 @@ def reset_deposits():
     return
     
 if __name__ == "__main__":
-    # drop table deposits
-    meta.drop_all(engine)
-    # create table deposits
-    meta.create_all(engine)
+    # run test functions
+    deposit = update_deposit("fa0793c9-7f8c-4ecc-8e28-85f7c0ce62c9", True)
 
 

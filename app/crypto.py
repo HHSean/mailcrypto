@@ -42,7 +42,7 @@ def make_deposit(recipient, amount):
     tx_receipt = web3.eth.waitForTransactionReceipt(tx_hash)
     print(f"Transaction hash: {web3.toHex(tx_receipt.transactionHash)}")
     print(f"Contract Balance: {get_balance(CONTRACT_ADDRESS)}")
-    return tx_receipt
+    return tx_receipt, web3.toHex(tx_receipt.transactionHash)
 
 
 def make_withdrawal(index, recipient):
@@ -68,6 +68,12 @@ def make_withdrawal(index, recipient):
 def get_balance(address):
     return web3.eth.getBalance(address)
 
+
+## util
+
+def check_if_address_is_valid(address):
+    return web3.isAddress(address)
+    
 
 if __name__ == "__main__":
     # send test deposit of 0.33 MATIC

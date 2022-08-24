@@ -11,7 +11,7 @@
   <title>MailCrypto</title>
   <meta name="title" content="mailcrypto" />
   <meta name="description" content="Send crypto to any email address" />
-  <link rel="icon" href="./src/media/circle_mail.svg" />
+  <link rel="icon" href="/src/media/circle_mail.svg" />
 
   <!-- Open Graph / Facebook -->
   <!--
@@ -29,7 +29,7 @@
 		<meta property="twitter:description" content="Text">
 		<meta property="twitter:image" content="#">
 		-->
-  <link rel="stylesheet" type="text/css" href="./src/css/main.css" />
+  <link rel="stylesheet" type="text/css" href="/src/css/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
     rel="stylesheet" />
 </head>
@@ -42,7 +42,7 @@
       <nav class="flex flex-wrap items-center">
         <a href="/" class="flex items-center py-5 pr-4 leading-snug md:pr-8">
           <div class="inline-flex items-center">
-            <img src="./src/media/circle_mail.svg" alt="mailcrypto" class="h-5 w-5" />
+            <img src="/src/media/circle_mail.svg" alt="mailcrypto" class="h-5 w-5" />
             <span class="ml-1 text-base font-bold">MailCrypto</span>
           </div>
         </a>
@@ -83,10 +83,14 @@
                 <h2 class="title-font mb-3 text-5xl font-black tracking-tighter
                     text-black md:text-4xl"> Congratulations!
                 </h2>
-                <p class="mt-4 text-lg text-gray-500">
+                <p class="mt-6 text-lg text-gray-500">
                   Operation completed successfully.
                 </p>
-                <p class="mt-4">Tx hash: </p>
+
+                <p class="mt-2 text-lg text-gray-500">
+                  {{ message }}
+                </p>
+                <p class="mt-6">Tx hash: </p>
                 <p class="text-gray-500">
                    <a target="_blank" href="https://mumbai.polygonscan.com/tx/{{ tx_hash }}"class="text-sm text-center underline ">{{ tx_hash }}</a>
                 </p>
@@ -111,7 +115,7 @@
         <div class="grow text-comet">
           <span class="text-blueGray-600 text-lg font-bold lg:text-2xl">
             <div class="inline-flex items-center">
-              <img src="./src/media/circle_mail.svg" alt="mailcrypto" class="mr-1 h-5 w-5" />
+              <img src="/src/media/circle_mail.svg" alt="mailcrypto" class="mr-1 h-5 w-5" />
               <span class="text-base font-bold">MailCrypto</span>
             </div>
           </span>

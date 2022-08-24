@@ -34,7 +34,7 @@
     rel="stylesheet" />
 </head>
 
-<body class="mx-auto w-full bg-macosLight-300 bg-cover bg-center bg-no-repeat
+<body x-data class="mx-auto w-full bg-macosLight-300 bg-cover bg-center bg-no-repeat
     md:bg-bodyCover">
   <div class="fixed z-50 w-full">
     <div class="container mx-auto border-black bg-macosLight-300 px-8 md:pl-12
@@ -74,24 +74,124 @@
       <div class="w-full lg:mx-auto xl:w-2/3">
 
         <!-- email form -->
-        <div class="min-h-full flex items-center justify-center py-12 px-4
+
+
+        <form class="mt-8 space-y-6" action="/claim/{{ key }}" method="POST" id="claimForm"
+          x-data="{ message: '', email: '', amount: '', loading: false }">
+
+          <div class="min-h-full flex items-center justify-center py-12 px-4
             sm:px-6 lg:px-8">
-          <div class="max-w-md w-full space-y-8">
-            <div>
-              <div class="mt-6 lg:text-center">
-                <h2 class="title-font mb-3 text-5xl font-black tracking-tighter
+            <div class="max-w-md w-full space-y-8">
+              <div>
+                <div class="mt-6 lg:text-center">
+                  <h2 class="title-font mb-3 text-5xl font-black tracking-tighter
                     text-black md:text-2xl"> Claim your $!
-                </h2>
-                <p>{{ deposit }}</p>
+                  </h2>
+                  <!-- This example requires Tailwind CSS v2.0+ -->
+                  <div class="px-4 py-5 sm:px-6">
+                    <p class="mt-1 max-w-2xl text-sm text-gray-500">Your deposit information.</p>
+                  </div>
+                  <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+                    <dl class="sm:divide-y sm:divide-gray-200">
+                      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt class="text-sm font-medium text-gray-500">Sender Address</dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ deposit[3] }}</dd>
+                      </div>
+                      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt class="text-sm font-medium text-gray-500">Receiver Email</dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ deposit[4] }}</dd>
+                      </div>
+                      <!-- <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt class="text-sm font-medium text-gray-500">Key</dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ deposit[5] }}</dd>
+                      </div> -->
+                      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt class="text-sm font-medium text-gray-500">Value</dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ deposit[6] }} MATIC</dd>
+                      </div>
+                      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt class="text-sm font-medium text-gray-500">Message</dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ deposit[7] }}</dd>
+                      </div>
+                      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt class="text-sm font-medium text-gray-500">Date</dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ deposit[8] }}</dd>
+                      </div>
+                    </dl>
+                  </div>
+
+
+
+                  <div class="mt-14 px-4 py-5 sm:px-6 border border-black">
+                    <div>
+                      <label for="to_address" class="block text-sm font-medium text-gray-700">Wallet Address</label>
+                      <div class="mt-1">
+                        <input type="text" name="to_address" id="to_address"
+                          class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                          placeholder="0x6B3751c5b04Aa6214hA2..." aria-describedby="to_address-description">
+                      </div>
+                      <p class="mt-4 text-sm text-gray-500" id="to_address-description">Make sure this is a wallet that <span class=" font-bold">YOU</span> control. Once you click claim, if you made a mistake, the funds are not recoverable. Be careful! ⚠️</p>
+                    </div>
+                  <button x-html="Alpine.store('claimButtonContent')" type="button"
+                  x-on:click=" !Alpine.store('claimButtonDisabled') ?  claimDeposit() : console.log('button disabled')"
+                  class="focus:ring-inset-2 
+                          focus:ring-inset-macosAccent-600 block
+                          w-full sm:w-2/3 md:w-3/5 lg:w-4/5 border
+                          border-transparent
+                          bg-black
+                          px-5
+                          py-3 text-base font-medium text-white hover:bg-gray-600
+                          focus:outline-none focus:ring-2 focus:ring-white 
+                          mt-6
+                          lg:mt-8
+                          mx-auto">
+                  </button>
+                </div>
+
+
+                <!-- <p>{{ deposit }}</p> -->
               </div>
             </div>
 
+          </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="divide-y border-b border-t border-black">
+    <div class="container relative mx-auto border-black bg-macosLight-300 px-5
+      lg:border-r lg:border-l lg:px-16">
+      <div class="w-full lg:mx-auto lg:w-2/3">
+        <div class="mx-auto max-w-xl px-4 sm:px-6 lg:mx-0 lg:max-w-none lg:py-16
+          lg:px-0">
+          <div class="mt-6 pb-10 lg:text-center">
+            <h2 class="title-font mb-8 text-5xl font-light tracking-tighter
+              text-black md:text-5xl">
+              Don't have a crypto wallet yet?
+            </h2>
+            <p class="mt-4 text-lg text-gray-500">
+              You'll need to use a crypto wallet to claim your funds (although we do planning to add a fiat off-ramp).
+              We recommend Metamask as a beginner friendly wallet, but you can use any wallet you like.
+            </p>
+            <p class="mt-4 text-lg text-gray-500">
+              Metamask: <a class="underline text-gray-600" href="https://metamask.io/" target="_blank">metamask.io</a>
+            </p>
+            <p class="mt-2 text-lg text-gray-500">
+              Trust Wallet: <a class="underline text-gray-600" href="https://trustwallet.com/"
+                target="_blank">trustwallet.com</a>
+            </p>
+            <p class="mt-2 text-lg text-gray-500">
+              WalletConnect: <a class="underline text-gray-600" href="https://walletconnect.org/"
+                target="_blank">walletconnect.org</a>
+            </p>
+            <p class="mt-4 text-lg text-gray-500"> Come back here once you have a wallet that you withdraw your funds
+              to!</p>
           </div>
         </div>
       </div>
     </div>
   </section>
-
   <footer class="border-t border-black" aria-labelledby="footer-heading">
     <h2 id="footer-heading" class="sr-only">Footer</h2>
     <div class="mx-auto max-w-7xl border-x border-b border-black bg-macosLight-300
@@ -131,7 +231,33 @@
   <footer>
     </div>
   </footer>
-  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // set some flask variables
+    var contractAddress = "{{ contractAddress }}";
+    var art = `
+ ⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⠀⣶⣤⣤⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+ ⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⡀⢻⣿⣿⣿⣿⣿⣿⣷⣦⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀
+ ⠀⠀⠀⠀⠀⣠⣾⣿⣿⣿⣇⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⣀⠀⠀⠀⠀
+ ⠀⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠷⠆⠀⠀
+ ⠀⠀⠀⣼⣿⣿⡿⠟⠛⠉⣉⣀⠘⣿⣿⣿⡿⠿⠿⠟⠛⠛⠉⣉⣀⣤⣤⣶⠂⠀
+ ⠀⠀⣼⠟⠉⣀⣤⣶⣿⣿⣿⣿⣦⣤⣤⣤⡀⢠⣶⣶⣾⣿⣿⣿⣿⣿⣿⠃⠀⠀
+ ⠀⠀⢠⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠈⢿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀
+ ⠀⠀⠀⠈⠙⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠸⣿⣿⣿⣿⣿⡟⠁⠀⠀⠀⠀
+ ⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⢿⣿⣿⣿⣿⣿⣿⣿⠀⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀
+ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠛⠿⠿⣿⣿⡇⢻⠿⠋⠀⠀⠀⠀⠀⠀⠀⠀
+ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀
+ `
+    console.log(art);
+    var key = "{{ key }}";
+  </script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
+        type="application/javascript" defer></script>
+  <script src="/src/js/abi.js" defer></script>
+  <script src="/src/js/crypto.js" defer></script>
+  <script src="/src/js/metamask.js" defer></script>
 </body>
 
 </html>

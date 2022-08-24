@@ -36,11 +36,6 @@
 
 <body x-data class="mx-auto w-full bg-macosLight-300 bg-cover bg-center bg-no-repeat
     md:bg-bodyCover">
-    <script>
-      // set some flask variables
-      var contractAddress = "{{ contractAddress }}";
-    </script>
-
 
   <div class="fixed z-50 w-full">
     <div class="container mx-auto border-black bg-macosLight-300 px-8 md:pl-12
@@ -100,7 +95,7 @@
 
             <!-- ==== POST FORM ==== -->
             <form class="mt-8 space-y-6" action="/send" method="POST" id="depositForm"
-            x-data="{ message: '', email: '', amount: '', loading: false }">
+              x-data="{ message: '', email: '', amount: '', loading: false }">
 
               <div>
                 <label for="email" class="block text-sm font-black                  
@@ -145,17 +140,15 @@
               <div>
                 <label for="comment" class="block text-sm font-black text-gray-700">Message</label>
                 <div class="mt-1">
-                  <textarea rows="2" x-model="message" name="message" id="message" maxlength="100"  placeholder="&quot;Hello John here's your payment for last weeks repairs...&quot;"
+                  <textarea rows="2" x-model="message" name="message" id="message" maxlength="100"
+                    placeholder="&quot;Hello John here's your payment for last weeks repairs...&quot;"
                     class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
                 </div>
               </div>
               <!-- Connect if not connected, else submit transaction -->
-              <button  
-                x-html="Alpine.store('buttonContent')"
+              <button x-html="Alpine.store('buttonContent')"
                 x-on:click=" Alpine.store('connected') ?  makeDeposit(amount, message, email) : Alpine.store('signer', connect())"
-              type="button"
-              
-              class="focus:ring-inset-2 
+                type="button" class="focus:ring-inset-2 
                       focus:ring-inset-macosAccent-600 block
                       w-full sm:w-2/3 md:w-3/5 lg:w-4/5 border
                       border-transparent
@@ -167,7 +160,7 @@
                       lg:mt-14
                       mx-auto">
               </button>
-              
+
               <div class="text-sm text-center underline mt-4">
                 <a href="https://mumbai.polygonscan.com/address/{{ contractAddress}}" target="_blank"
                   class="text-gray-500 hover:text-gray-600">
@@ -227,15 +220,34 @@
   <footer>
     </div>
   </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // set some flask variables
+    var contractAddress = "{{ contractAddress }}";
+    var art = `
+ ⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⠀⣶⣤⣤⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+ ⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⡀⢻⣿⣿⣿⣿⣿⣿⣷⣦⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀
+ ⠀⠀⠀⠀⠀⣠⣾⣿⣿⣿⣇⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⣀⠀⠀⠀⠀
+ ⠀⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠷⠆⠀⠀
+ ⠀⠀⠀⣼⣿⣿⡿⠟⠛⠉⣉⣀⠘⣿⣿⣿⡿⠿⠿⠟⠛⠛⠉⣉⣀⣤⣤⣶⠂⠀
+ ⠀⠀⣼⠟⠉⣀⣤⣶⣿⣿⣿⣿⣦⣤⣤⣤⡀⢠⣶⣶⣾⣿⣿⣿⣿⣿⣿⠃⠀⠀
+ ⠀⠀⢠⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠈⢿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀
+ ⠀⠀⠀⠈⠙⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠸⣿⣿⣿⣿⣿⡟⠁⠀⠀⠀⠀
+ ⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⢿⣿⣿⣿⣿⣿⣿⣿⠀⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀
+ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠛⠿⠿⣿⣿⡇⢻⠿⠋⠀⠀⠀⠀⠀⠀⠀⠀
+ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀
+ `
+    console.log(art);
+  </script>
+
   <!-- Alpine.js 3 -->
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-  <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
-        type="application/javascript" defer></script>
+  <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript" defer></script>
   <script src="/src/js/abi.js" defer></script>
   <script src="/src/js/crypto.js" defer></script>
   <script src="/src/js/metamask.js" defer></script>
-
 </body>
 
 </html>

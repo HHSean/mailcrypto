@@ -68,3 +68,19 @@ LINE 1: INSERT INTO deposits (key, deposit_index, sender, recipient,...
 ImmutableMultiDict([('email', 'test@hugomontenegro.com'), ('amount', '0.03'), ('message', 'test'), ('txHash', '0x519bf58ece254bfdccdd701c6b7cf8aa5b67c1f389848fc2dda211769f05a03f'), ('depositIndex', '12')])
 test@hugomontenegro.com
 0.03
+(psycopg2.OperationalError) server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+[SQL: INSERT INTO deposits (key, deposit_index, sender, recipient, tx_hash, amount, message, created_at, updated_at, accepted) VALUES (%(key)s, %(deposit_index)s, %(sender)s, %(recipient)s, %(tx_hash)s, %(amount)s, %(message)s, %(created_at)s, %(updated_at)s, %(accepted)s) RETURNING deposits.id]
+[parameters: {'key': '6f166b85-618d-473b-8bd7-34e5fabbe294', 'deposit_index': '16', 'sender': '0x6B3751c5b04Aa818EA90115AA06a4D9A36A16f02', 'recipient': 'test@hugomontenegro.com', 'tx_hash': '0xa082dad628867feb51cc65e859b5067539189b4911d61299cf0c375a227fc719', 'amount': 0.099, 'message': 'FINAL test before showing K', 'created_at': datetime.datetime(2022, 8, 24, 15, 42, 59, 838851), 'updated_at': datetime.datetime(2022, 8, 24, 15, 42, 59, 838853), 'accepted': False}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+ImmutableMultiDict([('email', 'test@hugomontenegro.com'), ('amount', '0.099'), ('message', 'FINAL test before showing K'), ('txHash', '0xa082dad628867feb51cc65e859b5067539189b4911d61299cf0c375a227fc719'), ('senderAddress', '0x6B3751c5b04Aa818EA90115AA06a4D9A36A16f02'), ('depositIndex', '16')])
+test@hugomontenegro.com
+0.099
