@@ -14,9 +14,12 @@ import uuid
 import emails
 import db
 import web3
+import dotenv
+dotenv.load_dotenv("../.env")
+
 
 ################################################################################
-CONTRACT = "0xEb5AE49BB91709Bd8Be77924854DF093c2C5Ce8f"
+CONTRACT = os.getenv("CONTRACT_ADDRESS")
 ################################################################################
 
 
@@ -48,23 +51,29 @@ def home():
 @app.route("/send", methods=["GET", "POST"])
 def send():
     if request.method == "GET":
-        return render_template("send.html")
+        return render_template("send.html", contractAddress=CONTRACT)
     elif request.method == "POST":
         try:
             email = request.form["email"]
             amount = request.form["amount"]
             message = request.form["message"]
+            tx_hash = request.form["txHash"]
+            deposit_index = request.form["depositIndex"]
+
+            print(f"email: {email}, amount: {amount}, message: {message}, tx_hash: {tx_hash}, deposit_index: {deposit_index}")
+
             # create uuid
             key = str(uuid.uuid4())
             # make deposit in db
-            db.insert_deposit(email, email, key, amount, message)
+            db.insert_deposit(email, email, key, amount, message, tx_hash, deposit_index)
             
             # send email
             emails.send_email(email, amount=amount, key=key, message=message)
             emails.send_admin_email(email=email, amount=amount, key=key, message=message)
-            return render_template("success.html", key=key)
+            return render_template("success.html", tx_hash=tx_hash)
 
         except Exception as e:
+            print(e)
             # append error & info to disk
             with open("error.txt", "a") as f:
                 f.write(f"{e}\n")
@@ -77,7 +86,13 @@ def send():
 @app.route("/claim/<key>", methods=["GET", "POST"])
 def claim(key):
     if request.method == "GET":
-        return render_template("claim.html", key=key)
+        # check if key in db
+        if not db.check_key(key):
+            return render_template("error.html", message="Please check your email address for the correct claiming link.")
+
+        # get deposit
+        deposit = db.get_deposit(key)
+        return render_template("claim.html", deposit=deposit)
 
     # if POST, check if params are valid and authorize a withdrawal
     elif request.method == "POST":

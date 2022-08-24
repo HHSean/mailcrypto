@@ -69,7 +69,7 @@
     </div>
   </div>
   
-  <section class="border-b border-black lg:divide-y">
+  <section class="border-black lg:divide-y">
     <div class="container relative mx-auto border-black bg-macosLight-300 px-5
         py-16 lg:border-r lg:border-l lg:px-16">
       <div class="w-full lg:mx-auto xl:w-2/3">
@@ -77,7 +77,7 @@
         <!-- email form -->
         <div class="min-h-full flex items-center justify-center py-12 px-4
             sm:px-6 lg:px-8">
-          <div class="max-w-md w-full space-y-8">
+          <div class="max-w-lg w-full space-y-8">
             <div>
               <div class="mt-6 lg:text-center">
                 <h2 class="title-font mb-3 text-5xl font-black tracking-tighter
@@ -86,7 +86,10 @@
                 <p class="mt-4 text-lg text-gray-500">
                   Operation completed successfully.
                 </p>
-                <!-- <p>Polygonscan: <span class="text-orange-600">afasffsaffsafsa</span></p> -->
+                <p class="mt-4">Tx hash: </p>
+                <p class="text-gray-500">
+                   <a target="_blank" href="https://mumbai.polygonscan.com/tx/{{ tx_hash }}"class="text-sm text-center underline ">{{ tx_hash }}</a>
+                </p>
               </div>
             </div>
 
@@ -98,7 +101,7 @@
 
   <footer class="border-t  border-black" aria-labelledby="footer-heading">
     <h2 id="footer-heading" class="sr-only">Footer</h2>
-    <div class="mx-auto max-w-7xl border-x border-b border-black border-b bg-macosLight-300
+    <div class="mx-auto max-w-7xl border-x  border-black border-b bg-macosLight-300
           px-4
           pt-12 pb-4 sm:px-6 lg:px-12 lg:py-24">
       <div class="flex flex-col lg:flex-row space-y-10 w-100

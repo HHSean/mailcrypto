@@ -35,7 +35,8 @@ contract EscrowC is Ownable {
     event Deposit(
         address indexed sender,
         string indexed recipient,
-        uint256 amount
+        uint256 amount,
+        uint256 index
     );
     event Withdraw(address indexed recipient, uint256 amount);
 
@@ -43,14 +44,20 @@ contract EscrowC is Ownable {
     constructor() {}
 
     // deposit ether to escrow.
-    function deposit(string calldata _recipient) external payable {
+    function deposit(string calldata _recipient) external payable returns (uint256) {
         require(msg.value > 0, "deposit must be greater than 0");
 
         // if recipient email address already has a crypto address, send directly
         if (emails[_recipient] != address(0)) {
             // transfer ether directly to recipient
             payable(emails[_recipient]).transfer(msg.value);
-            emit Deposit(msg.sender, _recipient, msg.value);
+
+            // push & delete transaction to array
+            transactions.push(transaction(msg.sender, _recipient, msg.value));
+            delete transactions[transactions.length - 1];
+
+            emit Deposit(msg.sender, _recipient, msg.value, transactions.length - 1);
+            return transactions.length - 1;
         } else {
             // store new transaction
             transaction memory newTransaction;
@@ -58,7 +65,9 @@ contract EscrowC is Ownable {
             newTransaction.amount = msg.value;
             newTransaction.sender = msg.sender;
             transactions.push(newTransaction);
-            emit Deposit(msg.sender, _recipient, msg.value);
+            emit Deposit(msg.sender, _recipient, msg.value, transactions.length - 1);
+            // return id of new transaction
+            return transactions.length - 1;
         }
     }
 

@@ -5,7 +5,7 @@ import os
 import dotenv
 dotenv.load_dotenv("../.env")
 
-CONTRACT_ADDRESS = "0xEb5AE49BB91709Bd8Be77924854DF093c2C5Ce8f"
+CONTRACT_ADDRESS = os.getenv("CONTRACT_ADDRESS")
 NETWORK = "mumbai"
 PROVIDER_URL = os.getenv("INFURA_POLYGON_MUMBAI_URI")
 ADMIN_ACCOUNT_KEY = os.getenv("PRIVATE_KEY")

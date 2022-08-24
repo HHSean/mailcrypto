@@ -24,3 +24,47 @@ server closed the connection unexpectedly
 ImmutableMultiDict([('email', 'test@hugomontenegro.com'), ('amount', '100'), ('message', "Hi my dear friend thomas. I've been talking to you about crypto, it's time to sign up. Here's 100$")])
 test@hugomontenegro.com
 100
+400 Bad Request: The browser (or proxy) sent a request that this server could not understand.
+ImmutableMultiDict([('email', 'test@hugomontenegro.com'), ('amount', '0.01'), ('message', 'test')])
+test@hugomontenegro.com
+0.01
+400 Bad Request: The browser (or proxy) sent a request that this server could not understand.
+ImmutableMultiDict([('email', 'test@hugomontenegro.com'), ('amount', '0.01'), ('message', 'test')])
+test@hugomontenegro.com
+0.01
+400 Bad Request: The browser (or proxy) sent a request that this server could not understand.
+ImmutableMultiDict([('email', 'test@hugomontenegro.com'), ('amount', '0.01'), ('message', 'test')])
+test@hugomontenegro.com
+0.01
+400 Bad Request: The browser (or proxy) sent a request that this server could not understand.
+ImmutableMultiDict([('email', 'test@hugomontenegro.com'), ('amount', '0.01'), ('message', 'test')])
+test@hugomontenegro.com
+0.01
+400 Bad Request: The browser (or proxy) sent a request that this server could not understand.
+ImmutableMultiDict([('email', 'test@hugomontenegro.com'), ('amount', '0.01'), ('message', 'test')])
+test@hugomontenegro.com
+0.01
+400 Bad Request: The browser (or proxy) sent a request that this server could not understand.
+ImmutableMultiDict([('email', 'test@hugomontenegro.com'), ('amount', '0.01'), ('message', 'test')])
+test@hugomontenegro.com
+0.01
+(psycopg2.errors.InvalidTextRepresentation) invalid input syntax for type integer: "0.01"
+LINE 1: ...gro.com', '985b52a0-cdd6-4130-8d24-a8b87c6ed4af', '0.01', 't...
+                                                             ^
+
+[SQL: INSERT INTO deposits (sender, recipient, key, amount, message, created_at, updated_at, accepted) VALUES (%(sender)s, %(recipient)s, %(key)s, %(amount)s, %(message)s, %(created_at)s, %(updated_at)s, %(accepted)s) RETURNING deposits.id]
+[parameters: {'sender': 'test@hugomontenegro.com', 'recipient': 'test@hugomontenegro.com', 'key': '985b52a0-cdd6-4130-8d24-a8b87c6ed4af', 'amount': '0.01', 'message': 'testt', 'created_at': datetime.datetime(2022, 8, 24, 1, 22, 54, 567427), 'updated_at': datetime.datetime(2022, 8, 24, 1, 22, 54, 567429), 'accepted': False}]
+(Background on this error at: https://sqlalche.me/e/14/9h9h)
+ImmutableMultiDict([('email', 'test@hugomontenegro.com'), ('amount', '0.01'), ('message', 'testt'), ('txHash', '0x33947e81ae221b77e0843bcd1cf47e66bcf113cc8d9eaaedb34adce292c40eb1')])
+test@hugomontenegro.com
+0.01
+(psycopg2.errors.UndefinedColumn) column "deposit_index" of relation "deposits" does not exist
+LINE 1: INSERT INTO deposits (key, deposit_index, sender, recipient,...
+                                   ^
+
+[SQL: INSERT INTO deposits (key, deposit_index, sender, recipient, tx_hash, amount, message, created_at, updated_at, accepted) VALUES (%(key)s, %(deposit_index)s, %(sender)s, %(recipient)s, %(tx_hash)s, %(amount)s, %(message)s, %(created_at)s, %(updated_at)s, %(accepted)s) RETURNING deposits.id]
+[parameters: {'key': '2f12df39-867e-455d-b3a4-7f2449af8982', 'deposit_index': '12', 'sender': 'test@hugomontenegro.com', 'recipient': 'test@hugomontenegro.com', 'tx_hash': '0x519bf58ece254bfdccdd701c6b7cf8aa5b67c1f389848fc2dda211769f05a03f', 'amount': 0.03, 'message': 'test', 'created_at': datetime.datetime(2022, 8, 24, 3, 14, 6, 565361), 'updated_at': datetime.datetime(2022, 8, 24, 3, 14, 6, 565366), 'accepted': False}]
+(Background on this error at: https://sqlalche.me/e/14/f405)
+ImmutableMultiDict([('email', 'test@hugomontenegro.com'), ('amount', '0.03'), ('message', 'test'), ('txHash', '0x519bf58ece254bfdccdd701c6b7cf8aa5b67c1f389848fc2dda211769f05a03f'), ('depositIndex', '12')])
+test@hugomontenegro.com
+0.03

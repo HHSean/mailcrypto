@@ -7,7 +7,7 @@
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, DateTime, Boolean, Table, MetaData
+from sqlalchemy import Column, Integer, String, DateTime, Boolean, Table, MetaData, Float
 from sqlalchemy.orm import sessionmaker
 import json
 import csv
@@ -26,11 +26,18 @@ meta = MetaData()
 deposits = Table(
     "deposits",
     meta,
+    # l = request.form["email"]
+    #         amount = request.form["amount"]
+    #         message = request.form["message"]
+    #         tx_hash = request.form["txHash"]
+    #         deposit_index = request.form["depositIndex"]
     Column("id", Integer, primary_key=True),
+    Column("key", String),
+    Column("deposit_index", Integer),
     Column("sender", String),
     Column("recipient", String),
-    Column("key", String),
-    Column("amount", Integer),
+    Column("tx_hash", String),
+    Column("amount", Float),
     Column("message", String),
     Column("created_at", DateTime),
     Column("updated_at", DateTime),
@@ -43,8 +50,9 @@ Session = sessionmaker(bind=engine)
 
 
 
-def insert_deposit(sender, recipient, key, amount, message):
+def insert_deposit(sender, recipient, key, amount, message, tx_hash, deposit_index):
 
+    amount = float(amount)
     session = Session()
     deposit = deposits.insert().values(
         sender=sender,
@@ -55,6 +63,8 @@ def insert_deposit(sender, recipient, key, amount, message):
         created_at=datetime.datetime.utcnow(),
         updated_at=datetime.datetime.utcnow(),
         accepted=False,
+        tx_hash=tx_hash,
+        deposit_index=deposit_index,
     )
     session.execute(deposit)
     session.commit()
@@ -75,6 +85,15 @@ def update_deposit(key, accepted):
     session.commit()
     return deposit
 
+def check_key(key):
+    # checks if a key is in the database
+    session = Session()
+    deposit = session.query(deposits).filter(deposits.c.key == key).first()
+    if deposit is None:
+        return False
+    else:
+        return True
+
 
 def get_all_deposits():
     session = Session()
@@ -94,6 +113,7 @@ def download_deposits():
 
 # util functions
 
+
 def print_all_tables():
     # prints the name of all tables in the database
     session = Session()
@@ -106,25 +126,11 @@ def reset_deposits():
     session.query(deposits).delete()
     session.commit()
     return
-
     
 if __name__ == "__main__":
-    # insert test deposit
-    sender = "0x1234567890123456789012345678901234567890"
-    recipient = "hello@world.com"
-    key = "1234567890123456789012345678901234567890"
-    amount = 1
-    message = "test"
-    deposit = insert_deposit(sender, recipient, key, amount, message)
-    print(deposit)
-
-    # get test deposit
-    deposit = get_deposit(key)
-    print(deposit)
+    # drop table deposits
+    meta.drop_all(engine)
+    # create table deposits
+    meta.create_all(engine)
 
 
-    # download all deposits
-    # download_deposits()
-    
-    print_all_tables()
-    
