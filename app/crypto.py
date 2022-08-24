@@ -61,7 +61,7 @@ def make_withdrawal(index, recipient):
     tx_receipt = web3.eth.waitForTransactionReceipt(tx_hash)    
     print(f"Transaction hash: {web3.toHex(tx_receipt.transactionHash)}")
     print(f"Contract Balance: {get_balance(CONTRACT_ADDRESS)}")
-    return tx_receipt
+    return tx_receipt, web3.toHex(tx_receipt.transactionHash)
 
 
 
