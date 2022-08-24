@@ -48,7 +48,8 @@ async function connect() {
     })
 }
 
-var a = 0;
+var a = [];
+
 
 async function makeDeposit(amount, receiverEmail, message) {
   console.log("making deposit of " + amount + " to " + receiverEmail);
@@ -60,10 +61,13 @@ async function makeDeposit(amount, receiverEmail, message) {
   </svg> Processing...
   <span class="sr-only">Loading...</span>
 </div>`);
-
-  const signer = provider.getSigner();
+  console.log(1);
   var contractAddress = Alpine.store("contractAddress");
   var contractAbi = Alpine.store("contractAbi");
+  var signer = provider.getSigner();
+  a.push(signer);
+  a.push(contractAddress);
+  console.log(2);
   var contract = new ethers.Contract(contractAddress, contractAbi, signer);
 
   // call .deposit function on the contract and attach value to tx
@@ -73,9 +77,12 @@ async function makeDeposit(amount, receiverEmail, message) {
 
   console.log("options: " + options);
   // call function and listen to event
+  console.log(3);
   const tx = await contract.deposit(receiverEmail, options);
+  a.push(tx);
   console.log("tx: " + tx);
 
+  console.log(4);
 
   // submit depositForm to /send endpoint POST
   var form = document.getElementById("depositForm");
